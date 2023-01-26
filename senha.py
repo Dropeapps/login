@@ -31,5 +31,3 @@ def menu():
     elif opcao == "Login":
         login_sistema()
 
-# Executando o menu
-menu()
