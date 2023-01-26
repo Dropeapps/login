@@ -1,26 +1,22 @@
 import streamlit as st
-import hashlib
 
-login = st.text_input("Insira o login")
-senha = st.text_input("Insira a senha", type='password')
-cadastrar = st.button("Cadastrar")
+# Cadastro de login e senha
+def cadastro():
+    usuario = st.text_input("Digite seu login: ")
+    senha = st.text_input("Digite sua senha: ", type='password')
+    st.write("Cadastro realizado com sucesso!")
+    return usuario, senha
 
-def criptografar(senha):
-    senha_criptografada = hashlib.sha256(senha.encode()).hexdigest()
-    return senha_criptografada
+# Sistema de login
+def login():
+    usuario_cadastrado, senha_cadastrada = cadastro()
+    usuario_digitado = st.text_input("Digite seu login: ")
+    senha_digitada = st.text_input("Digite sua senha: ", type='password')
 
-if cadastrar:
-    senha_criptografada = criptografar(senha)
-    usuarios = {}
-    usuarios[login] = senha_criptografada
-    st.success("Usuário cadastrado com sucesso!")
+    if usuario_digitado == usuario_cadastrado and senha_digitada == senha_cadastrada:
+        st.write("Login realizado com sucesso!")
+    else:
+        st.write("Login ou senha incorretos.")
 
-login_entrar = st.text_input("Insira o login")
-senha_entrar = st.text_input("Insira a senha", type='password')
-entrar = st.button("Entrar")
-
-if entrar:
-    senha_digitada = criptografar(senha_entrar)
-    if login_entrar in usuarios and usuarios[login_entrar] == senha_digitada:
-        st.success("Login realizado com sucesso!")
-    
+st.title("Sistema de Login")
+st.button("Fazer login", login)
