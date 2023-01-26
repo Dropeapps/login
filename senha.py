@@ -23,4 +23,4 @@ if entrar:
     senha_digitada = criptografar(senha_entrar)
     if login_entrar in usuarios and usuarios[login_entrar] == senha_digitada:
         st.success("Login realizado com sucesso!")
-    else:
+    
