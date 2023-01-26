@@ -1,20 +1,35 @@
 import streamlit as st
 
+# Criando uma função para o cadastro de login e senha
 def cadastro():
-    usuario = st.text_input("Digite seu login: ")
-    senha = st.text_input("Digite sua senha: ", type='password')
-    st.write("Cadastro realizado com sucesso!")
-    return usuario, senha
+    st.title("Cadastro de Login e Senha")
+    login = st.text_input("Login: ")
+    senha = st.text_input("Senha: ", type='password')
+    if st.button("Cadastrar"):
+        # Armazenando o login e a senha em um dicionário
+        usuarios = {"login": login, "senha": senha}
+        st.success("Usuário cadastrado com sucesso!")
 
-def login():
-    usuario_cadastrado, senha_cadastrada = cadastro()
-    usuario_digitado = st.text_input("Digite seu login: ")
-    senha_digitada = st.text_input("Digite sua senha: ", type='password')
+# Criando uma função para o sistema de login
+def login_sistema():
+    st.title("Login no Sistema")
+    login = st.text_input("Login: ")
+    senha = st.text_input("Senha: ", type='password')
+    if st.button("Entrar"):
+        # Verificando se o login e a senha estão corretos
+        if usuarios["login"] == login and usuarios["senha"] == senha:
+            st.success("Login realizado com sucesso!")
+        else:
+            st.error("Login ou senha incorretos.")
 
-    if usuario_digitado == usuario_cadastrado and senha_digitada == senha_cadastrada:
-        st.write("Login realizado com sucesso!")
-    else:
-        st.write("Login ou senha incorretos.")
+# Criando o menu de opções
+def menu():
+    st.title("Menu de Opções")
+    opcao = st.selectbox("Selecione uma opção:", ["Cadastro", "Login"])
+    if opcao == "Cadastro":
+        cadastro()
+    elif opcao == "Login":
+        login_sistema()
 
-st.title("Sistema de Login")
-st.button("Fazer login", login)
+# Executando o menu
+menu()
