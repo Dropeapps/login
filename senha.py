@@ -1,13 +1,11 @@
 import streamlit as st
 
-# Cadastro de login e senha
 def cadastro():
     usuario = st.text_input("Digite seu login: ")
     senha = st.text_input("Digite sua senha: ", type='password')
     st.write("Cadastro realizado com sucesso!")
     return usuario, senha
 
-# Sistema de login
 def login():
     usuario_cadastrado, senha_cadastrada = cadastro()
     usuario_digitado = st.text_input("Digite seu login: ")
